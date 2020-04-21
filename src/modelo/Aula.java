@@ -4,15 +4,15 @@ import java.util.LinkedList;
 public class Aula {
     private String nome;
     private long numero;
-    private String sumario;
+    private StringBuilder sumario;
     private Professor professor;
     private LinkedList<Aluno> alunos;
 
     public Aula(String nome, long numero){
     this.nome=nome;
     this.numero=numero;
-    this.sumario="";
-    this.professor=null;
+    this.sumario = new StringBuilder();
+    this.professor = null;
     this.alunos=new LinkedList<>();
     }
 
@@ -30,8 +30,9 @@ public class Aula {
         this.numero = numero;
     }
 
-    public void getSumario() {
-    }
+    public String getSumario() { return sumario.toString(); }
+
+    
 
     //Function Professor
 
@@ -69,26 +70,26 @@ public class Aula {
 
     }
 
-
-
     public void adicionar(Aluno aluno){
         if(aluno==null || this.alunos.contains(aluno)) {
             return;
         }
         this.alunos.add(aluno);
+        aluno.adicionar(this);
     }
 
     public void remover(Aluno aluno){
-        if (alunos==null){
-            return;
+        if (alunos.remove(aluno)){
+            aluno.remover(this);
         }
-        this.alunos.remove(aluno);
-        aluno.remover(this);
+
+
     }
 
 
     public void adicionarLinhaSumario(String linha){
-        this.sumario += linha +"\n";
+       sumario.append(linha).append("\n");
+
     }
 
 

@@ -28,20 +28,21 @@ public class Aluno {
 
     //Adicionar ou remover Aula
     public void adicionar(Aula aula){
-        if(aula==null || this.aulas.contains(aula)) {
+        if(aula == null || this.aulas.contains(aula)) {
             return;
         }
-        this.aulas.add(aula);
+        aulas.add(aula);
+        aula.adicionar(this);
+
     }
 
     public void remover(Aula aula){
-        if (aula==null){
-            return;
+        if (aulas.remover(aula)){
+            aula.remover(this);
         }
-        this.aulas.remove(aula);
-        aula.remover(this);
+
     }
-    //------------------
+    //--------------------
 
     public void preencherSumario(Aula aula){
         if(!aulas.contains(aula)){
