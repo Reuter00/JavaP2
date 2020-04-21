@@ -3,13 +3,13 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="258.5" y="-11.5">modelo.Aluno</node>
-    <node x="-21.5" y="279.5">modelo.Professor</node>
-    <node x="-23.5" y="-33.5">modelo.Aula</node>
+    <node x="258.0" y="-5.0">modelo.Aluno</node>
+    <node x="-22.0" y="475.0">modelo.Professor</node>
+    <node x="-38.0" y="-2.0">modelo.Aula</node>
   </nodes>
   <notes />
   <edges />
-  <settings layout="Orthogonal" zoom="1.1" x="551.0" y="250.5454545454545" />
+  <settings layout="Orthogonal" zoom="0.40000000000000013" x="799.7503607503604" y="585.8852813852814" />
   <SelectedNodes />
   <Categories>
     <Category>Fields</Category>
