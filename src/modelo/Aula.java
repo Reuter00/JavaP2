@@ -8,12 +8,24 @@ public class Aula {
     private Professor professor;
     private LinkedList<Aluno> alunos;
 
+    //Constructor
     public Aula(String nome, long numero){
-    this.nome=nome;
-    this.numero=numero;
+    this(nome,numero,null,new LinkedList<>());
+   /* this.numero=numero;
     this.sumario = new StringBuilder();
     this.professor = null;
-    this.alunos=new LinkedList<>();
+    this.alunos=new LinkedList<>();*/  //porque vai buscar tudo ao construtor de baixo (menos a parte unica)
+    }
+
+    public  Aula(String nome, long numero, Professor professor, LinkedList<Aluno> alunos) {
+        this.nome = nome;
+        this.numero = numero;
+        this.sumario = new StringBuilder();
+        setProfessor(professor);
+        this.alunos = new LinkedList<>();
+        for (Aluno aluno : alunos) {
+            adicionar(aluno);
+        }
     }
 
 
@@ -41,8 +53,8 @@ public class Aula {
     }
 
     public void setProfessor(Professor professor) {
-        if(professor==null || this.professor==professor) {
-            return;
+        if(professor==null || this.professor==professor) { // verifica se passaram
+            return; //um professor
         }
         if (this.professor!=null){
             desassociarProfessor();

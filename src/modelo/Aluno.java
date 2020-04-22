@@ -37,7 +37,7 @@ public class Aluno {
     }
 
     public void remover(Aula aula){
-        if (aulas.remover(aula)){
+        if (aulas.remove(aula)) {
             aula.remover(this);
         }
 
