@@ -51,4 +51,19 @@ public class Aluno {
         aula.adicionarLinhaSumario(this.nome);
     }
 
+    public LinkedList<Aula> getAulas() {
+        return new LinkedList<>(aulas); // Para prevenir que mexam na lista, cria se uma nova
+    }
+
+    public LinkedList<Aula> getAulas(Horario horario) {
+        LinkedList<Aula> aulasAux = new LinkedList<>();
+
+        for (Aula aula : aulas) {
+            if (aula.getHorario().isSobre(horario)) { // se os horarios estiverem sobrepostos
+                aulasAux.add(aula);
+            }
+        }
+        return aulasAux;
+    }
+
 }

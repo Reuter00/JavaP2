@@ -7,21 +7,24 @@ public class Aula {
     private StringBuilder sumario;
     private Professor professor;
     private LinkedList<Aluno> alunos;
+    private Horario horario;
 
     //Constructor
-    public Aula(String nome, long numero){
-    this(nome,numero,null,new LinkedList<>());
+    public Aula(String nome, long numero, Horario horario){
+    this(nome,numero, horario,null, new LinkedList<>());
    /* this.numero=numero;
     this.sumario = new StringBuilder();
     this.professor = null;
     this.alunos=new LinkedList<>();*/  //porque vai buscar tudo ao construtor de baixo (menos a parte unica)
     }
 
-    public  Aula(String nome, long numero, Professor professor, LinkedList<Aluno> alunos) {
+    public  Aula(String nome, long numero, Horario horario, Professor professor, LinkedList<Aluno> alunos) {
         this.nome = nome;
         this.numero = numero;
+        this.horario = horario;
         this.sumario = new StringBuilder();
         setProfessor(professor);
+
         this.alunos = new LinkedList<>();
         for (Aluno aluno : alunos) {
             adicionar(aluno);
@@ -40,6 +43,10 @@ public class Aula {
 
     public void setNumero(long numero) {
         this.numero = numero;
+    }
+
+    public Horario getHorario() {
+        return horario;
     }
 
     public String getSumario() { return sumario.toString(); }
@@ -63,6 +70,16 @@ public class Aula {
         this.professor.adicionar(this);
     }
 
+    public void desassociarProfessor() {
+        if (this.professor == null) {
+            return;
+        }
+
+        Professor professorARemover = this.professor;
+        this.professor = null;
+        professorARemover.remover(this);
+    }
+
 
 
     //Functions Aluno
@@ -70,17 +87,7 @@ public class Aula {
         return new LinkedList<>(alunos);
     }
 
-    public void desassociarProfessor(){
-        if(this.professor==null){
-            return;
-        }
 
-        Professor professorARemover=this.professor;
-        this.professor=null;
-        professorARemover.remover(this);
-
-
-    }
 
     public void adicionar(Aluno aluno){
         if(aluno==null || this.alunos.contains(aluno)) {
@@ -94,7 +101,6 @@ public class Aula {
         if (alunos.remove(aluno)){
             aluno.remover(this);
         }
-
 
     }
 
