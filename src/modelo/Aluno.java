@@ -1,30 +1,15 @@
 package modelo;
 import java.util.LinkedList;
 
-public class Aluno {
-    private String nome;
-    private long numero;
+public class Aluno  extends Identificador{
     private LinkedList<Aula> aulas;
 
+    // Contructor
     public Aluno(String nome, long numero){
-        this.nome = nome;
-        this.numero = numero;
+        super(nome, numero);
         this.aulas = new LinkedList<>();
 
     }
-    //Dados do Professor
-    public long getNumero() {
-        return numero;
-    }
-
-    public void setNumero(long numero) {
-        this.numero = numero;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-    //-----------
 
     //Adicionar ou remover Aula
     public void adicionar(Aula aula){

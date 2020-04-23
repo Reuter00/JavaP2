@@ -3,17 +3,97 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="258.0" y="-5.0">modelo.Aluno</node>
-    <node x="-22.0" y="475.0">modelo.Professor</node>
-    <node x="-38.0" y="-2.0">modelo.Aula</node>
+    <node x="1460.5" y="76.0">modelo.Horario</node>
+    <node x="380.5" y="1236.0">modelo.Identificador</node>
+    <node x="40.5" y="348.0">modelo.Aluno</node>
+    <node x="680.5" y="1607.0">modelo.Professor</node>
+    <node x="1744.0" y="75.0">modelo.DiaSemana</node>
+    <node x="1023.5" y="628.0">modelo.Aula</node>
+    <node x="-30.5" y="1931.0">modelo.Descritor</node>
   </nodes>
   <notes />
-  <edges />
-  <settings layout="Orthogonal" zoom="0.40000000000000013" x="799.7503607503604" y="585.8852813852814" />
-  <SelectedNodes />
+  <edges>
+    <edge source="modelo.Professor" target="modelo.Identificador">
+      <point x="-119.5" y="-40.0" />
+      <point x="480.0" y="1680.0" />
+      <point x="0.0" y="124.0" />
+    </edge>
+    <edge source="modelo.Professor" target="modelo.Horario">
+      <point x="0.0" y="113.0" />
+      <point x="800.0" y="1880.0" />
+      <point x="1560.0" y="1880.0" />
+      <point x="0.0" y="124.0" />
+    </edge>
+    <edge source="modelo.Professor" target="modelo.Aluno">
+      <point x="-119.5" y="0.0" />
+      <point x="160.0" y="1720.0" />
+      <point x="0.0" y="92.0" />
+    </edge>
+    <edge source="modelo.Aula" target="modelo.Identificador">
+      <point x="-176.5" y="40.0" />
+      <point x="320.0" y="880.0" />
+      <point x="320.0" y="1280.0" />
+      <point x="-99.5" y="-80.0" />
+    </edge>
+    <edge source="modelo.Horario" target="modelo.DiaSemana">
+      <point x="99.5" y="0.0" />
+      <point x="-96.0" y="0.0" />
+    </edge>
+    <edge source="modelo.Professor" target="modelo.Aula">
+      <point x="119.5" y="0.0" />
+      <point x="1440.0" y="1720.0" />
+      <point x="1440.0" y="840.0" />
+      <point x="176.5" y="0.0" />
+    </edge>
+    <edge source="modelo.Identificador" target="modelo.Aula">
+      <point x="-99.5" y="-40.0" />
+      <point x="280.0" y="1320.0" />
+      <point x="280.0" y="840.0" />
+      <point x="-176.5" y="0.0" />
+    </edge>
+    <edge source="modelo.Aluno" target="modelo.Identificador">
+      <point x="20.0" y="92.0" />
+      <point x="180.0" y="1560.0" />
+      <point x="440.0" y="1560.0" />
+      <point x="-40.0" y="124.0" />
+    </edge>
+    <edge source="modelo.Aluno" target="modelo.Horario">
+      <point x="-119.5" y="0.0" />
+      <point x="0.0" y="440.0" />
+      <point x="0.0" y="200.0" />
+      <point x="-99.5" y="0.0" />
+    </edge>
+    <edge source="modelo.Aula" target="modelo.Horario">
+      <point x="176.5" y="-40.0" />
+      <point x="1520.0" y="800.0" />
+      <point x="-40.0" y="124.0" />
+    </edge>
+    <edge source="modelo.Aula" target="modelo.Aluno">
+      <point x="-40.0" y="-212.0" />
+      <point x="1160.0" y="440.0" />
+      <point x="119.5" y="0.0" />
+    </edge>
+    <edge source="modelo.Aluno" target="modelo.Aula">
+      <point x="0.0" y="-92.0" />
+      <point x="160.0" y="280.0" />
+      <point x="1200.0" y="280.0" />
+      <point x="0.0" y="-212.0" />
+    </edge>
+    <edge source="modelo.Aula" target="modelo.Professor">
+      <point x="-40.0" y="212.0" />
+      <point x="1160.0" y="1120.0" />
+      <point x="840.0" y="1120.0" />
+      <point x="40.0" y="-113.0" />
+    </edge>
+  </edges>
+  <settings layout="Orthogonal" zoom="0.40000000000000013" x="523.5714285714289" y="286.0000000000001" />
+  <SelectedNodes>
+    <node>modelo.Aula</node>
+  </SelectedNodes>
   <Categories>
     <Category>Fields</Category>
     <Category>Methods</Category>
+    <Category>Constructors</Category>
   </Categories>
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>

@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 
 public class Main {
-
+    https://web.microsoftstream.com/video/72cddb50-16f7-49a8-8f74-2b48797e0385
     public Main() {
         System.out.println(DiaSemana.DOMINGO);
         System.out.println(DiaSemana.DOMINGO.ordinal());

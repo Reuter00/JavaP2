@@ -1,31 +1,14 @@
 package modelo;
 import java.util.LinkedList;
 
-public class Professor {
-    private String nome;
-    private long numero;
+public class Professor extends Identificador {
     private LinkedList<Aula> aulas;
 
     public Professor(String nome, long numero){
-        this.nome=nome;
-        this.numero=numero;
+        super(nome,numero);
         this.aulas=new LinkedList<>();
     }
 
-
-    //Dados do Professor
-    public String getNome(){
-        return this.nome;
-    }
-
-    public long getNumero() {
-        return numero;
-    }
-
-    public void setNumero(long numero) {
-        this.numero = numero;
-    }
-    //------------
 
     public void preencherSumario(Aula aula){
         if (!aulas.contains(aula) || !aula.getSumario().isEmpty()) { return; } // Verifica se o professor tem a aula e se o sumario não esta vazio
