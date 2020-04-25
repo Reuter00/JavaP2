@@ -45,7 +45,7 @@ public class Aula extends Identificador {
     public String getNome(){
         return "Aula: " + super.getNome();
     }
-    
+
 
     //Function Professor
 

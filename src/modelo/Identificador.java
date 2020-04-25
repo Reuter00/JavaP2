@@ -2,7 +2,7 @@ package modelo;
 
 import java.util.LinkedList;
 
-public class Identificador {
+public abstract class Identificador {
     protected String nome;
     protected long numero;
 
