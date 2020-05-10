@@ -1,11 +1,15 @@
-package modelo;
+package modelo.pessoas;
+
+import modelo.Aula;
+import modelo.Horario;
+import modelo.Identificador;
 
 import java.util.LinkedList;
 
-public abstract class Pessoa extends Identificador {
+public abstract class PessoaComAulas extends Pessoa {
     protected LinkedList<Aula> aulas;
 
-    public Pessoa(String nome, long numero) {
+    public PessoaComAulas(String nome, long numero) {
         super(nome, numero);
         this.aulas = new LinkedList<>();
     }

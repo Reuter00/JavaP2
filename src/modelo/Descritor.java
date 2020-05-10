@@ -1,7 +1,8 @@
 package modelo;
 
-public class Descritor {
-    public String nome;
+public abstract class Descritor {
+    protected String nome;
+
 
     public Descritor(String nome) {
         this.nome = nome;

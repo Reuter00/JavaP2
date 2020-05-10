@@ -1,4 +1,7 @@
 package modelo;
+import modelo.pessoas.Aluno;
+import modelo.pessoas.Professor;
+
 import java.util.LinkedList;
 
 public class Aula extends Identificador {

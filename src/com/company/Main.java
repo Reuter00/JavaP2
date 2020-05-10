@@ -1,8 +1,8 @@
 package com.company;
 
 import modelo.*;
-import java.util.Arrays;
-import java.util.LinkedList;
+import modelo.pessoas.Aluno;
+import modelo.pessoas.Professor;
 
 public class Main {
 

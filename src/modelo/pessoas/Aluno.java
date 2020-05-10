@@ -1,7 +1,8 @@
-package modelo;
-import java.util.LinkedList;
+package modelo.pessoas;
 
-public class Aluno  extends Pessoa {
+import modelo.Aula;
+
+public class Aluno  extends PessoaComAulas {
 
 
     // Contructor
