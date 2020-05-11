@@ -3,36 +3,72 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="940.5" y="-4.0">modelo.Horario</node>
-    <node x="66.0" y="-22.0">modelo.Identificador</node>
-    <node x="418.0" y="221.0">modelo.Aluno</node>
-    <node x="400.5" y="0.0">modelo.Pessoa</node>
-    <node x="-16.0" y="795.0">modelo.DiaSemana</node>
-    <node x="698.0" y="10.0">modelo.Professor</node>
-    <node x="-16.5" y="257.0">modelo.Aula</node>
-    <node x="209.5" y="771.0">modelo.Descritor</node>
+    <node x="1380.5" y="-4.0">modelo.Horario</node>
+    <node x="1106.0" y="560.0">modelo.Identificador</node>
+    <node x="823.0" y="1370.0">modelo.pessoas.Aluno</node>
+    <node x="1121.5" y="1093.0">modelo.pessoas.Pessoa</node>
+    <node x="-2.0" y="269.0">modelo.divisoes.GabineteProfessor</node>
+    <node x="1624.0" y="-5.0">modelo.DiaSemana</node>
+    <node x="312.0" y="549.0">modelo.divisoes.GabineteSeguranca</node>
+    <node x="1103.0" y="1650.0">modelo.pessoas.Professor</node>
+    <node x="663.5" y="417.0">modelo.Aula</node>
+    <node x="320.5" y="-22.0">modelo.divisoes.Sala</node>
+    <node x="351.0" y="269.0">modelo.divisoes.Divisao</node>
+    <node x="729.5" y="941.0">modelo.pessoas.Seguranca</node>
+    <node x="1080.5" y="1283.0">modelo.pessoas.PessoaComAulas</node>
+    <node x="1129.5" y="291.0">modelo.Descritor</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="modelo.Pessoa" target="modelo.Identificador">
+    <edge source="modelo.pessoas.Professor" target="modelo.pessoas.PessoaComAulas">
+      <point x="0.0" y="-70.0" />
+      <point x="0.0" y="157.0" />
+    </edge>
+    <edge source="modelo.Identificador" target="modelo.Descritor">
+      <point x="0.0" y="-80.0" />
+      <point x="0.0" y="69.0" />
+    </edge>
+    <edge source="modelo.pessoas.Aluno" target="modelo.pessoas.PessoaComAulas">
+      <point x="97.0" y="0.0" />
       <point x="-119.5" y="0.0" />
-      <point x="94.0" y="0.0" />
     </edge>
-    <edge source="modelo.Professor" target="modelo.Pessoa">
-      <point x="-102.0" y="0.0" />
-      <point x="119.5" y="0.0" />
+    <edge source="modelo.divisoes.GabineteProfessor" target="modelo.divisoes.Divisao">
+      <point x="122.0" y="0.0" />
+      <point x="-89.0" y="0.0" />
     </edge>
-    <edge source="modelo.Aula" target="modelo.Identificador">
-      <point x="0.0" y="-223.0" />
-      <point x="0.0" y="102.0" />
+    <edge source="modelo.pessoas.PessoaComAulas" target="modelo.pessoas.Pessoa">
+      <point x="0.0" y="-157.0" />
+      <point x="0.0" y="27.0" />
     </edge>
-    <edge source="modelo.Aluno" target="modelo.Pessoa">
-      <point x="0.0" y="-59.0" />
+    <edge source="modelo.pessoas.Pessoa" target="modelo.Identificador">
+      <point x="0.0" y="-27.0" />
       <point x="0.0" y="80.0" />
     </edge>
+    <edge source="modelo.divisoes.Divisao" target="modelo.Descritor">
+      <point x="89.0" y="0.0" />
+      <point x="-70.5" y="0.0" />
+    </edge>
+    <edge source="modelo.divisoes.Sala" target="modelo.divisoes.Divisao">
+      <point x="0.0" y="102.0" />
+      <point x="0.0" y="-91.0" />
+    </edge>
+    <edge source="modelo.pessoas.Seguranca" target="modelo.pessoas.Pessoa">
+      <point x="150.5" y="0.0" />
+      <point x="-78.5" y="0.0" />
+    </edge>
+    <edge source="modelo.Aula" target="modelo.Identificador">
+      <point x="176.5" y="0.0" />
+      <point x="-94.0" y="0.0" />
+    </edge>
+    <edge source="modelo.divisoes.GabineteSeguranca" target="modelo.divisoes.Divisao">
+      <point x="0.0" y="-91.0" />
+      <point x="0.0" y="91.0" />
+    </edge>
   </edges>
-  <settings layout="Orthogonal" zoom="0.8" x="807.0000000000003" y="359.05555555555554" />
-  <SelectedNodes />
+  <settings layout="Orthogonal" zoom="0.8" x="807.0" y="531.0" />
+  <SelectedNodes>
+    <node>modelo.pessoas.PessoaComAulas</node>
+  </SelectedNodes>
   <Categories>
     <Category>Fields</Category>
     <Category>Constructors</Category>

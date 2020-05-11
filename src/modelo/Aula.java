@@ -1,4 +1,5 @@
 package modelo;
+import modelo.divisoes.Sala;
 import modelo.pessoas.Aluno;
 import modelo.pessoas.Professor;
 
@@ -9,21 +10,23 @@ public class Aula extends Identificador {
     private Professor professor;
     private LinkedList<Aluno> alunos;
     private Horario horario;
+    private Sala sala;
 
     //Constructor
-    public Aula(String nome, long numero, Horario horario){
-    this(nome,numero, horario,null, new LinkedList<>());
+    public Aula(String nome, long numero, Horario horario, Sala sala){
+    this(nome,numero, horario,sala, null, new LinkedList<>());
    /* this.numero=numero;
     this.sumario = new StringBuilder();
     this.professor = null;
     this.alunos=new LinkedList<>();*/  //porque vai buscar tudo ao construtor de baixo (menos a parte unica)
     }
 
-    public  Aula(String nome, long numero, Horario horario, Professor professor, LinkedList<Aluno> alunos) {
+    public  Aula(String nome, long numero, Horario horario,Sala sala, Professor professor, LinkedList<Aluno> alunos) {
         super(nome, numero);
         this.horario = horario;
         this.sumario = new StringBuilder();
         setProfessor(professor);
+        setSala(sala);
 
         this.alunos = new LinkedList<>();
         for (Aluno aluno : alunos) {
@@ -49,6 +52,28 @@ public class Aula extends Identificador {
         return "Aula: " + super.getNome();
     }
 
+    public Sala getSala() {
+        return sala;
+    }
+
+    public void setSala(Sala sala) {
+        if (sala == null || this.sala == sala){
+            return;
+        }
+        desassociarSala();
+
+        this.sala = sala;
+        this.sala.adicioar(this);
+    }
+
+    public void desassociarSala(){
+        if (this.sala == null){
+            return;
+        }
+        Sala salaARemover = this.sala;
+        this.sala = null;
+        salaARemover.remover(this);
+    }
 
     //Function Professor
 
@@ -60,20 +85,20 @@ public class Aula extends Identificador {
         if(professor==null || this.professor==professor) { // verifica se passaram
             return; //um professor
         }
-        if (this.professor!=null){
+
             desassociarProfessor();
-        }
+
         this.professor = professor;
         this.professor.adicionar(this);
     }
 
     public void desassociarProfessor() {
-        if (this.professor == null) {
+        if (professor == null) {
             return;
         }
 
-        Professor professorARemover = this.professor;
-        this.professor = null;
+        Professor professorARemover = professor;
+        professor = null;
         professorARemover.remover(this);
     }
 

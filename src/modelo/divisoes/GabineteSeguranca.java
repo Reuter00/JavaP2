@@ -1,4 +1,5 @@
 package modelo.divisoes;
+import modelo.pessoas.Professor;
 import modelo.pessoas.Seguranca;
 
 import java.util.LinkedList;
@@ -12,7 +13,7 @@ public class GabineteSeguranca extends Divisao {
     }
 
     public LinkedList<Seguranca> getSeguranca() {
-        return null; // todo get Seguranca
+        return new LinkedList<Seguranca>();
     }
 
     public void adicionar(Seguranca seguranca){

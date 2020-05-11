@@ -12,11 +12,15 @@ public class GabineteProfessor extends Divisao {
     }
 
     public LinkedList<Professor> getProfessor() {
-        return null; // todo get professor
+        return new LinkedList<Professor>();
     }
 
     public void adicionar(Professor professor){
-        // todo adicionar professor
+        if(professor==null || this.professores.contains(professor)) {
+            return;
+        }
+        this.professores.add(professor);
+        professor.a(this);
     }
 
     public void remover(Professor professor){
