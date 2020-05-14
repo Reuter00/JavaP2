@@ -17,11 +17,17 @@ public class GabineteSeguranca extends Divisao {
     }
 
     public void adicionar(Seguranca seguranca){
-        // todo adicionar Seguranca
+        if(seguranca==null || segurancas.contains(seguranca)) {
+            return;
+        }
+        segurancas.add(seguranca);
+        seguranca.setGabinete(this);
     }
 
     public void remover(Seguranca seguranca){
-            // todo remover Seguranca
+            if( seguranca != null && segurancas.remove(seguranca)){
+                seguranca.desassociarGabinete();
+            }
     }
 }
 

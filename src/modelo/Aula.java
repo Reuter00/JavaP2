@@ -63,7 +63,7 @@ public class Aula extends Identificador {
         desassociarSala();
 
         this.sala = sala;
-        this.sala.adicioar(this);
+        this.sala.adicionar(this);
     }
 
     public void desassociarSala(){
@@ -120,7 +120,7 @@ public class Aula extends Identificador {
     }
 
     public void remover(Aluno aluno){
-        if (alunos.remove(aluno)){
+        if (aluno != null && alunos.remove(aluno)){
             aluno.remover(this);
         }
 

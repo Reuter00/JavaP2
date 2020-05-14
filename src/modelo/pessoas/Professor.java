@@ -1,5 +1,6 @@
 package modelo.pessoas;
 
+import modelo.divisoes.GabineteSeguranca;
 import modelo.divisoes.Sala;
 import modelo.Aula;
 import modelo.Horario;
@@ -53,42 +54,60 @@ public class Professor extends PessoaComAulas {
     }
 
     public void abrirGabinete(){
-       if (!gabinete.isAberta()){
+       if (gabinete!= null && !gabinete.isAberta()){
            gabinete.abrir();
        }
     }
 
     public void fecharGabinete(){
-        if (gabinete.isAberta()){
+        if (gabinete!= null && gabinete.isAberta()){
             gabinete.fechar();
         }
     }
 
     public void abrir(Sala sala){
-        if (!sala.isAberta()){
+        if (sala != null && !sala.isAberta()){
             sala.abrir();
         }
     }
 
 
     public void fechar(Sala sala){
-        if (sala.isAberta()){
+        if (sala != null && sala.isAberta()){
             sala.fechar();
         }
     }
 
     public void setGabinete(GabineteProfessor gabinete){
-        // todo implementar
+        if(gabinete==null || this.gabinete == gabinete) {
+            return;
+        }
+        desassociarGabinete();
+        this.gabinete = gabinete;
+        gabinete.adicionar(this);
     }
 
     public void desassociarGabinete(){
-        // todo implementar
+      if (this.gabinete == null){
+          return;
+      }
+
+        GabineteProfessor gabineteARemover = gabinete;
+        this.gabinete = null;
+        this.gabinete.remover(this);
     }
-    public void adicionar(Horario horario){
-        // todo implementar
+
+    public void adicionar(Horario horario) {
+        if (horario == null || horariosAtendimento.contains(horario)){
+            return;
+        }
+        horariosAtendimento.add(horario);
     }
-    public void remover(Horario horario){
-        // todo implementar
+
+    public void remover(Horario horario) {
+        if (horario != null){
+            horariosAtendimento.remove(horario);
+        }
     }
 
 

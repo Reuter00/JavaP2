@@ -16,14 +16,16 @@ public class GabineteProfessor extends Divisao {
     }
 
     public void adicionar(Professor professor){
-        if(professor==null || this.professores.contains(professor)) {
+        if(professor==null || professores.contains(professor)) {
             return;
         }
-        this.professores.add(professor);
-        professor.a(this);
+        professores.add(professor);
+        professor.setGabinete(this);
     }
 
     public void remover(Professor professor){
-        // todo remover professor
+        if ( professor != null && professores.remove(professor)){
+            professor.desassociarGabinete();
+        }
     }
 }

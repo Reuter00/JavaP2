@@ -14,7 +14,7 @@ public class Sala  extends Divisao{
     }
 
     public LinkedList<Aula> getAulas(){
-        return new LinkedList<>(aulas); // todo get aulas
+        return new LinkedList<>(aulas);
     }
 
     public LinkedList<Aula> getAulas(Horario horario) {
@@ -33,20 +33,16 @@ public class Sala  extends Divisao{
             return;
         }
         aulas.add(aula);
-        associar(aula);
+        aula.setSala(this);
     }
 
     public void remover(Aula aula){
-        if (aulas.remove(aula)){
-            aula.remover(aula);
+        if (aula != null && aulas.remove(aula)){
+            aula.desassociarSala();
         }
 
     }
-    public void adicioar(Aula aula){
-        // todo adicionar aula
-    }
 
-    public void remover(Aula aula){
-        // todo remover aula
-    }
+
+
 }

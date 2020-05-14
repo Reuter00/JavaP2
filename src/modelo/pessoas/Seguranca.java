@@ -1,6 +1,8 @@
 package modelo.pessoas;
 
 import modelo.Horario;
+import modelo.divisoes.Divisao;
+import modelo.divisoes.GabineteProfessor;
 import modelo.divisoes.GabineteSeguranca;
 
 import java.util.LinkedList;
@@ -8,6 +10,7 @@ import java.util.LinkedList;
 public class Seguranca extends Pessoa {
     private GabineteSeguranca gabinete;
     private LinkedList<Horario> horariosAtendimento;
+    private Divisao divisao;
 
     public Seguranca(String nome, long numero, GabineteSeguranca gabinete) {
         super(nome, numero);
@@ -16,46 +19,67 @@ public class Seguranca extends Pessoa {
     }
 
     public LinkedList<Horario> getHorariosAtendimento() {
-        return null; // todo get horario atendimento
+        return new LinkedList<>(horariosAtendimento); // passar por parametero para copiar a lista e não isar uma original
     }
 
     public void adicionar(Horario horario) {
-        // todo adicionar horario
+        if (horario == null || horariosAtendimento.contains(horario)){
+            return;
+        }
+        horariosAtendimento.add(horario);
     }
 
     public void remover(Horario horario) {
-        // todo remover horario
+       if (horario != null){
+           horariosAtendimento.remove(horario);
+       }
     }
 
     public void abrirGabinete() {
-        if (!gabinete.isAberta()) {
+        if (gabinete != null && !gabinete.isAberta()) {
             gabinete.abrir();
         }
     }
 
     public void fecharGabinete() {
-        if (gabinete.isAberta()) {
+        if (gabinete != null &&  gabinete.isAberta()) {
             gabinete.fechar();
         }
     }
 
     public void abrir(Divisao divisao) {
-        // todo abrir divisao
+        if (divisao != null &&  !divisao.isAberta()){
+            divisao.abrir();
+        }
     }
 
     public void fechar(Divisao divisao) {
-        // todo fechar divisao
+        if (divisao != null && divisao.isAberta()){
+            divisao.fechar();
+        }
     }
 
     public GabineteSeguranca getGabinete() {
         return gabinete;
     }
 
-    public void setGabinete(GabineteSeguranca gabinete) {
-        // todo set gabinete
+    public void setGabinete(GabineteSeguranca gabinete){
+        if(gabinete==null || this.gabinete == gabinete) {
+            return;
+        }
+        desassociarGabinete();
+        this.gabinete = gabinete;
+        gabinete.adicionar(this);
     }
 
-    public void desassociarGabinete() {
-        // todo desassociar gabinete
+    public void desassociarGabinete(){
+        if (this.gabinete == null){
+            return;
+        }
+        GabineteSeguranca gabineteARemover = gabinete;
+        this.gabinete = null;
+        this.gabinete.remover(this);
+
     }
+
 }
