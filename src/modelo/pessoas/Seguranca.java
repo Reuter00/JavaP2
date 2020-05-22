@@ -7,32 +7,27 @@ import modelo.divisoes.GabineteSeguranca;
 
 import java.util.LinkedList;
 
-public class Seguranca extends Pessoa {
+public class Seguranca extends Pessoa implements Funcionario {
     private GabineteSeguranca gabinete;
-    private LinkedList<Horario> horariosAtendimento;
-    private Divisao divisao;
+    private GestorFuncionario gestorFuncionario;
 
     public Seguranca(String nome, long numero, GabineteSeguranca gabinete) {
         super(nome, numero);
         setGabinete(gabinete);
-        horariosAtendimento = new LinkedList<>();
+        gestorFuncionario = new GestorFuncionario();
+
     }
 
     public LinkedList<Horario> getHorariosAtendimento() {
-        return new LinkedList<>(horariosAtendimento); // passar por parametero para copiar a lista e não isar uma original
+        return gestorFuncionario.getHorariosAtendimento(); // passar por parametero para copiar a lista e não isar uma original
     }
 
     public void adicionar(Horario horario) {
-        if (horario == null || horariosAtendimento.contains(horario)){
-            return;
-        }
-        horariosAtendimento.add(horario);
+        gestorFuncionario.adicionar(horario);
     }
 
     public void remover(Horario horario) {
-       if (horario != null){
-           horariosAtendimento.remove(horario);
-       }
+        gestorFuncionario.remover(horario);
     }
 
     public void abrirGabinete() {

@@ -97,6 +97,7 @@ public class Main {
         }
 
         // Exemplo de um cast sem verificação de Descritor para GabineteSeguranca
+
         GabineteSeguranca gabineteSeguranca = (GabineteSeguranca) descritores.get(0);
         // Ocorre um problema, visto que na primeira posição da lista está um GabineteProfessor
     }

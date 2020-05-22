@@ -12,14 +12,17 @@ public class Aluno  extends PessoaComAulas {
     }
 
 
-
+    //--------------------
     @Override
-    protected void associar(Aula aula) {
+    public void associar(Aula aula) {
         aula.adicionar(this);
     }
 
-    //--------------------
+    @Override
+    public void desassociar(Aula aula) {
+        aula.remover(this);
 
+    }
 
 
 
@@ -28,9 +31,5 @@ public class Aluno  extends PessoaComAulas {
       super.assinarSumario(aula);
     }
 
-    @Override
-    protected void dessociar(Aula aula) {
-        aula.remover(this);
 
-    }
 }

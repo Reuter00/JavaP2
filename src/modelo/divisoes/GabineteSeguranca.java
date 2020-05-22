@@ -1,10 +1,10 @@
 package modelo.divisoes;
-import modelo.pessoas.Professor;
+import modelo.Gabinete;
 import modelo.pessoas.Seguranca;
 
 import java.util.LinkedList;
 
-public class GabineteSeguranca extends Divisao {
+public class GabineteSeguranca extends Gabinete<Seguranca> {
     private LinkedList<Seguranca> segurancas;
 
     public GabineteSeguranca(String nome, boolean aberta) {
@@ -12,22 +12,6 @@ public class GabineteSeguranca extends Divisao {
         segurancas = new LinkedList<>();
     }
 
-    public LinkedList<Seguranca> getSeguranca() {
-        return new LinkedList<Seguranca>();
-    }
 
-    public void adicionar(Seguranca seguranca){
-        if(seguranca==null || segurancas.contains(seguranca)) {
-            return;
-        }
-        segurancas.add(seguranca);
-        seguranca.setGabinete(this);
-    }
-
-    public void remover(Seguranca seguranca){
-            if( seguranca != null && segurancas.remove(seguranca)){
-                seguranca.desassociarGabinete();
-            }
-    }
 }
 

@@ -6,20 +6,27 @@ import modelo.Aula;
 import modelo.Horario;
 import modelo.divisoes.GabineteProfessor;
 
+
 import java.util.LinkedList;
 
-public class Professor extends PessoaComAulas {
+public class Professor extends PessoaComAulas implements Funcionario<GabineteProfessor, Sala> {
 
     private GabineteProfessor gabinete;
-    private LinkedList<Horario> horariosAtendimento;
+    private GestorFuncionario gestorFuncionario;
 
     public Professor(String nome, long numero, GabineteProfessor gabinete){
         super(nome,numero);
-        horariosAtendimento = new LinkedList<>();
+        gestorFuncionario = new GestorFuncionario();
         setGabinete(gabinete);
     }
 
-
+@Override
+public void preencherSumario(Aula aula){
+        if (!aula.getSumario().isEmpty()){
+            return;
+        }
+        super.preencherSumario(aula);
+}
 
     @Override
     protected void escreverSumario(Aula aula) {
@@ -32,16 +39,12 @@ public class Professor extends PessoaComAulas {
     }
 
     @Override
-    protected void associar(Aula aula) {
+    public void associar(Aula aula) {
         aula.setProfessor(this);
     }
 
-
-    //------------
-
-
     @Override
-    protected void dessociar(Aula aula) {
+    public void desassociar(Aula aula) {
         aula.desassociarProfessor();
     }
 
@@ -49,35 +52,40 @@ public class Professor extends PessoaComAulas {
         return gabinete;
     }
 
+    @Override
     public LinkedList<Horario> getHorariosAtendimento() {
-        return new LinkedList<>(horariosAtendimento); // passar por parametero para copiar a lista e não isar uma original
+        return gestorFuncionario.getHorariosAtendimento(); // passar por parametero para copiar a lista e não isar uma original
     }
 
+    @Override
     public void abrirGabinete(){
        if (gabinete!= null && !gabinete.isAberta()){
            gabinete.abrir();
        }
     }
 
+    @Override
     public void fecharGabinete(){
         if (gabinete!= null && gabinete.isAberta()){
             gabinete.fechar();
         }
     }
 
+    @Override
     public void abrir(Sala sala){
         if (sala != null && !sala.isAberta()){
             sala.abrir();
         }
     }
 
-
+    @Override
     public void fechar(Sala sala){
         if (sala != null && sala.isAberta()){
             sala.fechar();
         }
     }
 
+    @Override
     public void setGabinete(GabineteProfessor gabinete){
         if(gabinete==null || this.gabinete == gabinete) {
             return;
@@ -87,6 +95,7 @@ public class Professor extends PessoaComAulas {
         gabinete.adicionar(this);
     }
 
+    @Override
     public void desassociarGabinete(){
       if (this.gabinete == null){
           return;
@@ -97,17 +106,14 @@ public class Professor extends PessoaComAulas {
         this.gabinete.remover(this);
     }
 
+    @Override
     public void adicionar(Horario horario) {
-        if (horario == null || horariosAtendimento.contains(horario)){
-            return;
-        }
-        horariosAtendimento.add(horario);
+        gestorFuncionario.adicionar(horario);
     }
 
+    @Override
     public void remover(Horario horario) {
-        if (horario != null){
-            horariosAtendimento.remove(horario);
-        }
+        gestorFuncionario.remover(horario);
     }
 
 

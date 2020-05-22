@@ -1,56 +1,44 @@
 package modelo.pessoas;
 
-import modelo.Aula;
-import modelo.Horario;
-import modelo.Identificador;
+import modelo.*;
 
 import java.util.LinkedList;
 
-public abstract class PessoaComAulas extends Pessoa {
-    protected LinkedList<Aula> aulas;
+public abstract class PessoaComAulas extends Pessoa implements RepositorioAulas, AssociavelAulas {
+
+    private GestorAulas gestorAulas;
 
     public PessoaComAulas(String nome, long numero) {
         super(nome, numero);
-        this.aulas = new LinkedList<>();
+       gestorAulas = new GestorAulas(this);
     }
 
+    @Override
     public void adicionar(Aula aula) {
-        if (aula == null || aulas.contains(aula)) {
-            return;
-        }
-        aulas.add(aula);
-        associar(aula);
+       gestorAulas.adicionar(aula);
     }
 
-    protected abstract void associar(Aula aula);
-
-
-    public LinkedList<Aula> getAulas() {
-        return new LinkedList<>(aulas); // Para prevenir que mexam na lista, cria se uma nova
-    }
-
-    public LinkedList<Aula> getAulas(Horario horario) {
-        LinkedList<Aula> aulasAux = new LinkedList<>();
-
-        for (Aula aula : aulas) {
-            if (aula.getHorario().isSobre(horario)) { // se os horarios estiverem sobrepostos
-                aulasAux.add(aula);
-            }
-        }
-        return aulasAux;
-    }
-
+    @Override
     public void remover(Aula aula) {
-        if (!aulas.remove(aula)) {
-            return;
-        }
-        dessociar(aula);
+        gestorAulas.remover(aula);
     }
 
-    protected abstract void dessociar(Aula aula);
+
+    @Override
+    public LinkedList<Aula> getAulas() {
+        return gestorAulas.getAulas(); // Para prevenir que mexam na lista, cria se uma nova
+    }
+    @Override
+    public LinkedList<Aula> getAulas(Horario horario) {
+        return gestorAulas.getAulas(horario);
+    }
+
+    //Interface AssociavelAulas
+   // public abstract void associar(Aula aula);
+   // public abstract void dessociar(Aula aula);
 
     public void preencherSumario(Aula aula) {
-        if (!aulas.contains(aula)) {
+        if (!gestorAulas.contem(aula)) {
             return;
         }
         escreverSumario(aula);
