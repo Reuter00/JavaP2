@@ -11,12 +11,12 @@ import java.util.LinkedList;
 
 public class Professor extends PessoaComAulas implements Funcionario<GabineteProfessor, Sala> {
 
-    private GabineteProfessor gabinete;
-    private GestorFuncionario gestorFuncionario;
+
+    private GestorFuncionario<GabineteProfessor, Sala> gestorFuncionario;
 
     public Professor(String nome, long numero, GabineteProfessor gabinete){
         super(nome,numero);
-        gestorFuncionario = new GestorFuncionario();
+        gestorFuncionario = new GestorFuncionario<>(this);
         setGabinete(gabinete);
     }
 
@@ -48,8 +48,14 @@ public void preencherSumario(Aula aula){
         aula.desassociarProfessor();
     }
 
+    @Override
+    protected void assinarSumario(Aula aula) {
+        super.assinarSumario(aula);
+    }
+
+    @Override
     public GabineteProfessor getGabinete() {
-        return gabinete;
+        return gestorFuncionario.getGabinete();
     }
 
     @Override
@@ -59,51 +65,32 @@ public void preencherSumario(Aula aula){
 
     @Override
     public void abrirGabinete(){
-       if (gabinete!= null && !gabinete.isAberta()){
-           gabinete.abrir();
-       }
+     gestorFuncionario.abrirGabinete();
     }
 
     @Override
     public void fecharGabinete(){
-        if (gabinete!= null && gabinete.isAberta()){
-            gabinete.fechar();
-        }
+       gestorFuncionario.fecharGabinete();
     }
 
     @Override
     public void abrir(Sala sala){
-        if (sala != null && !sala.isAberta()){
-            sala.abrir();
-        }
+       gestorFuncionario.abrir(sala);
     }
 
     @Override
     public void fechar(Sala sala){
-        if (sala != null && sala.isAberta()){
-            sala.fechar();
-        }
+        gestorFuncionario.fechar(sala);
     }
 
     @Override
     public void setGabinete(GabineteProfessor gabinete){
-        if(gabinete==null || this.gabinete == gabinete) {
-            return;
-        }
-        desassociarGabinete();
-        this.gabinete = gabinete;
-        gabinete.adicionar(this);
+       gestorFuncionario.setGabinete(gabinete);
     }
 
     @Override
     public void desassociarGabinete(){
-      if (this.gabinete == null){
-          return;
-      }
-
-        GabineteProfessor gabineteARemover = gabinete;
-        this.gabinete = null;
-        this.gabinete.remover(this);
+      gestorFuncionario.desassociarGabinete();
     }
 
     @Override

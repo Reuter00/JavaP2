@@ -4,17 +4,17 @@ import modelo.Horario;
 import modelo.divisoes.Divisao;
 import modelo.divisoes.GabineteProfessor;
 import modelo.divisoes.GabineteSeguranca;
+import modelo.divisoes.Sala;
 
 import java.util.LinkedList;
 
-public class Seguranca extends Pessoa implements Funcionario {
-    private GabineteSeguranca gabinete;
-    private GestorFuncionario gestorFuncionario;
+public class Seguranca extends Pessoa implements Funcionario<GabineteSeguranca, Divisao> {
+    private GestorFuncionario<GabineteSeguranca, Divisao> gestorFuncionario;
 
     public Seguranca(String nome, long numero, GabineteSeguranca gabinete) {
         super(nome, numero);
+        gestorFuncionario = new GestorFuncionario<>(this);
         setGabinete(gabinete);
-        gestorFuncionario = new GestorFuncionario();
 
     }
 
@@ -31,50 +31,38 @@ public class Seguranca extends Pessoa implements Funcionario {
     }
 
     public void abrirGabinete() {
-        if (gabinete != null && !gabinete.isAberta()) {
-            gabinete.abrir();
-        }
+      gestorFuncionario.abrirGabinete();
     }
 
     public void fecharGabinete() {
-        if (gabinete != null &&  gabinete.isAberta()) {
-            gabinete.fechar();
-        }
+      gestorFuncionario.fecharGabinete();
     }
 
+    @Override
     public void abrir(Divisao divisao) {
         if (divisao != null &&  !divisao.isAberta()){
             divisao.abrir();
         }
     }
 
+    @Override
     public void fechar(Divisao divisao) {
         if (divisao != null && divisao.isAberta()){
             divisao.fechar();
         }
     }
 
+    @Override
     public GabineteSeguranca getGabinete() {
-        return gabinete;
+        return gestorFuncionario.getGabinete();
     }
 
+    @Override
     public void setGabinete(GabineteSeguranca gabinete){
-        if(gabinete==null || this.gabinete == gabinete) {
-            return;
-        }
-        desassociarGabinete();
-        this.gabinete = gabinete;
-        gabinete.adicionar(this);
+        gestorFuncionario.setGabinete(gabinete);
     }
 
-    public void desassociarGabinete(){
-        if (this.gabinete == null){
-            return;
-        }
-        GabineteSeguranca gabineteARemover = gabinete;
-        this.gabinete = null;
-        this.gabinete.remover(this);
-
+    public void desassociarGabinete() {
+        gestorFuncionario.desassociarGabinete();
     }
-
 }
